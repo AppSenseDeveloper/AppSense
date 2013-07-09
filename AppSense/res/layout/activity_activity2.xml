@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <CheckBox
+        android:id="@+id/chkAcc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accSensor" />
+
+    <CheckBox
+        android:id="@+id/chkGPS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/gpdSensor" />
+
+    <CheckBox
+        android:id="@+id/chkMic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/micSensor" />
+
+    <CheckBox
+        android:id="@+id/chkCam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/camSensor" />
+
+    <Button
+        android:id="@+id/btnSens"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="onClick"
+        android:text="Start Data Collection" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="114dp"
+        android:layout_height="wrap_content"
+        android:text="testing" />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stop" 
+        android:onClick="stop"/>
+
+    <TextView
+        android:id="@+id/textx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/texty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/textLat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textLong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+   
