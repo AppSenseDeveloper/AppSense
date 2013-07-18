@@ -89,44 +89,11 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/temp2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/temp"
-        android:layout_toRightOf="@+id/temp"
-        android:text="MicStop" />
-
-    <Button
         android:id="@+id/ChooseSensors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="Click me" />
-
-    <Button
-        android:id="@+id/temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/ChooseSensors"
-        android:text="MicStart" />
-
-    <Button
-        android:id="@+id/temp3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/temp2"
-        android:layout_alignBottom="@+id/temp2"
-        android:layout_toRightOf="@+id/ChooseSensors"
-        android:text="Play" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ChooseSensors"
-        android:layout_alignRight="@+id/tableLayout1"
-        android:text="stop play" />
    
 </RelativeLayout>

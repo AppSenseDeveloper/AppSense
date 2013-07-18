@@ -26,10 +26,9 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int ChooseSensors=0x7f090017;
-        public static final int action_settings=0x7f09001a;
+        public static final int ChooseSensors=0x7f090016;
+        public static final int action_settings=0x7f090017;
         public static final int btnSens=0x7f090004;
-        public static final int button1=0x7f090019;
         public static final int chkAcc=0x7f090000;
         public static final int chkCam=0x7f090003;
         public static final int chkGPS=0x7f090001;
@@ -42,8 +41,6 @@ public final class R {
         public static final int tableRow2=0x7f090010;
         public static final int tableRow3=0x7f090013;
         public static final int temp=0x7f090006;
-        public static final int temp2=0x7f090016;
-        public static final int temp3=0x7f090018;
         public static final int textCollection=0x7f090012;
         public static final int textCount=0x7f090015;
         public static final int textLat=0x7f09000a;

@@ -44,10 +44,8 @@ public class Activity2 extends Activity{
 
 	private CheckBox acc,gps,mic,cam;
 	public TextView t,tx,ty,tz,tlat,tlong;
-	//private SensorManager sm;
 	private LocationManager service;
 	private LocationListener gpsListener;
-	//private Sensor accsensor;
 	public String fileName="accData.csv",provider,readings,path;
 	public int sampleRate;
 	double latitude,longitude,altitude;
@@ -61,15 +59,13 @@ public class Activity2 extends Activity{
 	File gpsFile;
 	public Camera camera;
 	SurfaceView sv;
-	//	EventSource evs;
+	
 		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_activity2);
-		   //get the sensor service
-		
-		//writeToSDFile();
+		 
 		final SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(Activity2.this);
 
 		sampleRate= pref.getInt("Gsampling", -1);
@@ -80,10 +76,8 @@ public class Activity2 extends Activity{
 		System.out.println(path.toString());
 		System.out.print("read from editor");
 		
-		//sm = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+		
 		service=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
-		//accsensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-		//sm2=new MyLocationListener();
 		noOfCam=Camera.getNumberOfCameras();
 		acc=(CheckBox)findViewById(R.id.chkAcc);
 		gps=(CheckBox)findViewById(R.id.chkGPS);
@@ -97,7 +91,6 @@ public class Activity2 extends Activity{
 		tlong=(TextView)findViewById(R.id.textLong);
 		btn=(Button)findViewById(R.id.btnSens);
 		
-		//evs=new EventSource(sampleRate, dataRate ,count);
 		
 	}
 
@@ -117,8 +110,8 @@ public class Activity2 extends Activity{
 			path=Environment.getExternalStorageDirectory().getPath();
 			myFile = new File(path,"accText.txt");
 			
-			BeeperControl cd=new BeeperControl(this,myFile);
-			//cd.GetAccReadings(myFile, sampleRate, dataRate, count);
+			AccelerometerCode cd=new AccelerometerCode(this,myFile);
+			cd.GetAccReadings(sampleRate, dataRate, count,myFile);
 			/*if(sm!=null)
 			{			
 				path=Environment.getExternalStorageDirectory().getPath();
@@ -203,6 +196,8 @@ public class Activity2 extends Activity{
 		if(mic.isChecked())
 		{
 			//collect data for microphone
+			MicrophoneCode mic=new MicrophoneCode();
+			mic.RecordMicData(sampleRate, dataRate, count);
 		}
 		
 		if(cam.isChecked())
