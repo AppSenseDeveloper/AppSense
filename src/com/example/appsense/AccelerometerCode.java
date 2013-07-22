@@ -51,12 +51,11 @@ public class AccelerometerCode{
 			}
 		};
 		
-	public AccelerometerCode(Context context,File f)
+	public AccelerometerCode(Context context)
     {
          sm = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE); 
          accsensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         sm.registerListener(listen, accsensor, 1000000);
-        myFile=f;
       
     }
 	
@@ -69,7 +68,6 @@ public class AccelerometerCode{
 		int total=count*(sampleRate+dataRate);
 		beepForAnHour(sampleRate+dataRate,total);
 		cnclBeepForAnHour(sampleRate+dataRate,dataRate,total);
-		
 	}
 	
 	public void beepForAnHour(int x,int dur) 

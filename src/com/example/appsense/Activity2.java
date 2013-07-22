@@ -29,10 +29,11 @@ import android.hardware.Camera.CameraInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.hardware.SensorListener;
 import android.hardware.SensorManager;
 import android.util.Log;
 import android.view.Menu;
+import android.view.SurfaceHolder;
+import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Activity2 extends Activity{
+public class Activity2 extends Activity implements Callback{
 
 	private CheckBox acc,gps,mic,cam;
 	public TextView t,tx,ty,tz,tlat,tlong;
@@ -59,6 +60,9 @@ public class Activity2 extends Activity{
 	File gpsFile;
 	public Camera camera;
 	SurfaceView sv;
+	
+	SurfaceHolder h;
+	
 	
 		
 	@Override
@@ -110,87 +114,18 @@ public class Activity2 extends Activity{
 			path=Environment.getExternalStorageDirectory().getPath();
 			myFile = new File(path,"accText.txt");
 			
-			AccelerometerCode cd=new AccelerometerCode(this,myFile);
+			AccelerometerCode cd=new AccelerometerCode(this);
 			cd.GetAccReadings(sampleRate, dataRate, count,myFile);
-			/*if(sm!=null)
-			{			
-				path=Environment.getExternalStorageDirectory().getPath();
-				myFile = new File(path,"accText.txt");
-				Log.d("a","acc started");
-				//Toast t1=Toast.makeText(getApplicationContext(), "working & started",Toast.LENGTH_SHORT);
-				//t1.show();
-				sm.registerListener(this, accsensor, sampleRate*1000*1000);
-			}
-			else
-			{
-				//Toast t=Toast.makeText(getApplicationContext(), "no acc available", Toast.LENGTH_SHORT);
-				//t.show();
-				Log.d("problem","no accelerometer available");
-			}	
-			//collect data for accelerometer
-			 * 
-			 */
 		}
 		
 		if(gps.isChecked())
 		{
-			Log.d("ps", "gps checked");
-			gpsFile=new File(path,"gpsReadings.txt");
-		      try {
-				gpsFile.createNewFile();
-				Log.d("ps", "File created");
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		      
-		    service.requestLocationUpdates(LocationManager.GPS_PROVIDER, sampleRate*1000*1000,0, gpsListener);
-		    Log.d("msg","listener registered");
-		    //UpdateGPSFile(gpsFile, latitude, longitude,altitude );
-		   // tlat.setText("Latitude" +"\t\t"+latitude);
-			//tlong.setText("Longitude" +"\t\t"+longitude);
+			path=Environment.getExternalStorageDirectory().getPath();
+			gpsFile=new File(path,"gpsText.txt");
 			
-			gpsListener=new LocationListener() {
-				
-				@Override
-				public void onStatusChanged(String provider, int status, Bundle extras) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void onProviderEnabled(String provider) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void onProviderDisabled(String provider) {
-					// TODO Auto-generated method stub
-					
-				}
-				
-				@Override
-				public void onLocationChanged(Location location) {
-					// TODO Auto-generated method stub
-					latitude=location.getLatitude();
-					longitude=location.getLongitude();
-					altitude=location.getAltitude();
-					speed=location.getSpeed();
-					Log.d("gps","location saved");
-					tlat.setText("Latitude" +"\t\t"+latitude);
-					tlong.setText("Longitude" +"\t\t"+longitude);
-					//Toast.makeText(Activity2.this, String.valueOf(latitude)+String.valueOf(longitude), Toast.LENGTH_SHORT).show();
-					UpdateGPSFile(gpsFile, latitude, longitude,altitude );
-				}
-			};
-			
-			
-			
-			//to stop it from collecting data during the pause period use removeUpdates
-			
-			//service.removeUpdates(gpsListener);
-		//collect data for GPS
+			GPSCode gpscd=new GPSCode(this);
+			gpscd.GetMultipleGPSReadings(sampleRate, dataRate, count, gpsFile);
+		    
 		}
 		
 		if(mic.isChecked())
@@ -202,6 +137,11 @@ public class Activity2 extends Activity{
 		
 		if(cam.isChecked())
 		{
+			Camera c=null;
+			c.open(CameraInfo.CAMERA_FACING_BACK);
+			c.getParameters();
+			c.setDisplayOrientation(180);
+			
 		}
 		//Toast.makeText(getApplicationContext(), "started", Toast.LENGTH_LONG).show();
 	}
@@ -281,6 +221,28 @@ try {
 	{
 		//sm.unregisterListener(this);
 		//service.removeUpdates(gpsListener);
+	}
+
+
+	@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
